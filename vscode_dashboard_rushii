@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Crop Decision Intelligence</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>AgriIntel</h2>
+        <ul>
+            <li class="active"><a href="dashboard.html">📊 Dashboard</a></li>
+            <li><a href="recommendation.html">🌱 Recommendations</a></li>
+            <li><a href="#">📈 Market Trends</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
+            <li><a href="index.html" class="logout">🚪 Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <h1>Welcome back, Farmer! 🌾</h1>
+            <p>Here is your farm's overview for today.</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>🌤️ Local Weather</h3>
+                <p class="stat-value" id="weather-val">--°C</p>
+                <p class="stat-desc" id="weather-desc">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h3>💧 Soil Moisture</h3>
+                <p class="stat-value" id="moisture-val">--</p>
+                <p class="stat-desc">Estimated from satellite data</p>
+            </div>
+            <div class="stat-card">
+                <h3>📈 Market Alert</h3>
+                <p class="stat-value" id="market-val">--</p>
+                <p class="stat-desc">Regional mandi prices</p>
+            </div>
+        </div>
+
+        <div class="recommendation-section">
+            <h2>Need a new crop suggestion?</h2>
+            <p>Our AI analyzes your farm's soil and environmental data to recommend the most profitable crops for the upcoming season.</p>
+            <button id="btn-recommend" class="btn-primary">Go to AI Recommender</button>
+        </div>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
