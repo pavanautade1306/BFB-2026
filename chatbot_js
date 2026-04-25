@@ -1,0 +1,148 @@
+// ============ CHATBOT FUNCTIONALITY ============
+
+// Your Groq API Key
+const GROQ_API_KEY = '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';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+// DOM Elements
+const chatToggleBtn = document.querySelector('.chat-toggle-btn');
+const chatWindow = document.getElementById('chatWindow');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+const closeChatBtn = document.querySelector('.close-chat-btn');
+const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+
+// Toggle Chat Window
+chatToggleBtn.addEventListener('click', () => {
+    if (chatWindow.style.display === 'none') {
+        chatWindow.style.display = 'flex';
+        chatToggleBtn.querySelector('.chat-icon').textContent = '✕';
+    } else {
+        chatWindow.style.display = 'none';
+        chatToggleBtn.querySelector('.chat-icon').textContent = '💬';
+    }
+});
+
+// Close button
+closeChatBtn.addEventListener('click', () => {
+    chatWindow.style.display = 'none';
+    chatToggleBtn.querySelector('.chat-icon').textContent = '💬';
+});
+
+// Quick suggestions
+suggestionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        chatInput.value = btn.textContent;
+        sendMessage();
+    });
+});
+
+// Send message on button click
+sendBtn.addEventListener('click', sendMessage);
+
+// Send message on Enter key
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Add message to chat
+function addMessage(text, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}-message`;
+    messageDiv.innerHTML = `<p>${text}</p>`;
+    chatMessages.appendChild(messageDiv);
+    scrollToBottom();
+}
+
+// Show typing indicator
+function showTyping() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot-message typing';
+    typingDiv.id = 'typingIndicator';
+    typingDiv.innerHTML = '<p><span></span><span></span><span></span></p>';
+    chatMessages.appendChild(typingDiv);
+    scrollToBottom();
+}
+
+// Hide typing indicator
+function hideTyping() {
+    const typingIndicator = document.getElementById('typingIndicator');
+    if (typingIndicator) {
+        typingIndicator.remove();
+    }
+}
+
+// Scroll to bottom
+function scrollToBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Main send message function
+async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // Add user message
+    addMessage(message, 'user');
+    chatInput.value = '';
+    
+    // Disable input
+    chatInput.disabled = true;
+    sendBtn.disabled = true;
+    
+    // Show typing
+    showTyping();
+
+    try {
+        const response = await fetch(GROQ_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${GROQ_API_KEY}`
+            },
+            body: JSON.stringify({
+                model: 'mixtral-8x7b-32768',
+                messages: [
+                    {
+                        role: 'system',
+                        content: 'You are an expert agricultural AI assistant specializing in soil analysis. Help with soil types, crop recommendations, soil improvement, pH management, and organic farming. Use simple language. Keep responses concise and practical.'
+                    },
+                    {
+                        role: 'user',
+                        content: message
+                    }
+                ],
+                temperature: 0.7,
+                max_tokens: 1000
+            })
+        });
+
+        const data = await response.json();
+        
+        // Hide typing
+        hideTyping();
+
+        if (data.choices && data.choices[0]) {
+            const aiResponse = data.choices[0].message.content;
+            addMessage(aiResponse, 'bot');
+        } else {
+            addMessage('Sorry, I couldn\'t process that. Please try again.', 'bot');
+        }
+    } catch (error) {
+        hideTyping();
+        console.error('Error:', error);
+        addMessage('Connection error. Please check your internet and try again.', 'bot');
+    }
+
+    // Re-enable input
+    chatInput.disabled = false;
+    sendBtn.disabled = false;
+    chatInput.focus();
+}
+
+// Initialize
+console.log('🌱 Soil AI Chatbot Ready!');
+// ============ END CHATBOT ============
