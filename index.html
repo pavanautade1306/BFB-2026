@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropSmart — Sign In</title>
+    <meta name="description" content="CropSmart - Grow Smarter. Farm Better. Data-driven crop decision intelligence for modern farmers.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+
+    <main class="auth-page">
+        <!-- Left Panel: Branding -->
+        <section class="branding-panel">
+            <div class="branding-content">
+                <div class="logo-large">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="48" fill="white" fill-opacity="0.15"/>
+                        <path d="M50 20C50 20 25 35 25 60C25 75 35 80 50 80C65 80 75 75 75 60C75 35 50 20 50 20Z" fill="white"/>
+                        <path d="M50 80V40M50 40L35 55M50 50L65 35" stroke="#2D6A4F" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1 class="app-name-large">CropSmart</h1>
+                <p class="tagline-large">Grow Smarter. Farm Better.</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🌱</div>
+                        <span>Smart Crop Recommendations</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <span>Market & Profit Analytics</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌦️</div>
+                        <span>Real-time Weather Integration</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decoration -->
+            <div class="branding-decoration">
+                <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,144C960,117,1056,107,1152,122.7C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Right Panel: Forms -->
+        <section class="form-panel">
+            <div class="form-container">
+                <div class="tab-switcher">
+                    <button class="tab-btn active" id="tab-signin">Sign In</button>
+                    <button class="tab-btn" id="tab-signup">Sign Up</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <div class="form-section active" id="signin-section">
+                    <form id="signin-form">
+                        <div class="form-group">
+                            <label for="signin-id">Email / Mobile Number</label>
+                            <input type="text" id="signin-id" placeholder="Enter email or mobile number" required>
+                            <div class="error-message" id="signin-id-error">Please enter a valid email or 10-digit mobile number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signin-password">Password</label>
+                            <div class="input-icon-wrapper">
+                                <input type="password" id="signin-password" placeholder="Enter your password" required>
+                                <span class="password-toggle" onclick="togglePassword('signin-password')">👁️</span>
+                            </div>
+                            <div class="error-message" id="signin-password-error">Password must be at least 8 characters</div>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                        <button type="submit" class="btn btn-primary btn-full" style="width: 100%;">Sign In</button>
+                    </form>
+                    
+                    <div class="divider">Or continue with</div>
+                    
+                    <button class="btn google-btn">
+                        <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px;">
+                            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+                            <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/>
+                            <path d="M3.964 10.706c-.18-.54-.282-1.117-.282-1.706 0-.589.102-1.166.282-1.706V4.962H.957C.347 6.177 0 7.549 0 9c0 1.451.347 2.823.957 4.038l3.007-2.332z" fill="#FBBC05"/>
+                            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z" fill="#EA4335"/>
+                        </svg>
+                        Google
+                    </button>
+                    
+                    <div class="form-footer">
+                        Don't have an account? <a href="#" id="link-signup">Sign Up</a>
+                    </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div class="form-section" id="signup-section">
+                    <form id="signup-form">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" placeholder="Your full name" required>
+                            <div class="error-message">Name must be at least 2 characters</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-id">Email / Mobile Number</label>
+                            <input type="text" id="signup-id" placeholder="Enter email or mobile number" required>
+                            <div class="error-message">Please enter a valid email or 10-digit mobile number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Create Password</label>
+                            <div class="input-icon-wrapper">
+                                <input type="password" id="signup-password" placeholder="Create a password" required>
+                                <span class="password-toggle" onclick="togglePassword('signup-password')">👁️</span>
+                            </div>
+                            <div class="strength-container">
+                                <div class="strength-bar">
+                                    <div class="strength-progress" id="strength-progress"></div>
+                                </div>
+                                <div class="strength-label" id="strength-label">Strength: Weak</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm">Confirm Password</label>
+                            <div class="input-icon-wrapper">
+                                <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                                <span class="password-toggle" onclick="togglePassword('signup-confirm')">👁️</span>
+                            </div>
+                            <div class="error-message" id="confirm-error">Passwords do not match</div>
+                        </div>
+                        <button type="submit" class="btn btn-accent btn-full" style="width: 100%;">Sign Up</button>
+                    </form>
+                    
+                    <div class="form-footer" style="margin-top: 24px;">
+                        Already have an account? <a href="#" id="link-signin">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+    <script>
+        // Tab Switching Logic
+        const tabSignin = document.getElementById('tab-signin');
+        const tabSignup = document.getElementById('tab-signup');
+        const signinSection = document.getElementById('signin-section');
+        const signupSection = document.getElementById('signup-section');
+        const linkSignin = document.getElementById('link-signin');
+        const linkSignup = document.getElementById('link-signup');
+
+        function showSignin() {
+            tabSignin.classList.add('active');
+            tabSignup.classList.remove('active');
+            signinSection.classList.add('active');
+            signupSection.classList.remove('active');
+            document.title = "CropSmart — Sign In";
+        }
+
+        function showSignup() {
+            tabSignup.classList.add('active');
+            tabSignin.classList.remove('active');
+            signupSection.classList.add('active');
+            signinSection.classList.remove('active');
+            document.title = "CropSmart — Sign Up";
+        }
+
+        tabSignin.onclick = showSignin;
+        tabSignup.onclick = showSignup;
+        linkSignin.onclick = (e) => { e.preventDefault(); showSignin(); };
+        linkSignup.onclick = (e) => { e.preventDefault(); showSignup(); };
+
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        // Validation Logic
+        function validateId(val) {
+            const isEmail = val.includes('@') && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+            const isMobile = /^\d{10}$/.test(val);
+            return isEmail || isMobile;
+        }
+
+        function updateFieldState(input, isValid, errorMsgElement) {
+            if (isValid) {
+                input.classList.remove('invalid');
+                input.classList.add('valid');
+                if (errorMsgElement) errorMsgElement.style.display = 'none';
+            } else {
+                input.classList.add('invalid');
+                input.classList.remove('valid');
+                if (errorMsgElement) errorMsgElement.style.display = 'block';
+            }
+        }
+
+        // Real-time Password Strength
+        const signupPass = document.getElementById('signup-password');
+        const strengthProgress = document.getElementById('strength-progress');
+        const strengthLabel = document.getElementById('strength-label');
+
+        signupPass.oninput = () => {
+            const val = signupPass.value;
+            let score = 0;
+            if (val.length >= 8) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+
+            const colors = ['#E63946', '#F4A261', '#FFD166', '#52B788'];
+            const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+            
+            strengthProgress.style.width = (score * 25) + '%';
+            strengthProgress.style.backgroundColor = colors[score-1] || '#DEE2E6';
+            strengthLabel.textContent = 'Strength: ' + (labels[score-1] || 'Weak');
+        };
+
+        // Form Submissions
+        document.getElementById('signin-form').onsubmit = (e) => {
+            e.preventDefault();
+            const id = document.getElementById('signin-id').value;
+            const pass = document.getElementById('signin-password').value;
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            UIManager.setLoading(btn, true);
+
+            setTimeout(() => {
+                const result = AuthManager.signIn(id, pass);
+                UIManager.setLoading(btn, false);
+                
+                if (result.success) {
+                    UIManager.showToast('Successfully signed in!', 'success');
+                    setTimeout(() => window.location.href = 'app.html', 1000);
+                } else {
+                    UIManager.showToast(result.message, 'error');
+                }
+            }, 1000);
+        };
+
+        document.getElementById('signup-form').onsubmit = (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const id = document.getElementById('signup-id').value;
+            const pass = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+
+            if (pass !== confirm) {
+                UIManager.showToast('Passwords do not match', 'error');
+                return;
+            }
+
+            const btn = e.target.querySelector('button[type="submit"]');
+            UIManager.setLoading(btn, true);
+
+            setTimeout(() => {
+                const result = AuthManager.signUp(name, id, pass);
+                UIManager.setLoading(btn, false);
+                
+                if (result.success) {
+                    UIManager.showToast('Account created! Redirecting to sign in...', 'success');
+                    setTimeout(() => showSignin(), 1500);
+                } else {
+                    UIManager.showToast(result.message, 'error');
+                }
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
