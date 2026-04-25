@@ -1,0 +1,41 @@
+<!-- ============ CHATBOT WIDGET ============ -->
+<div class="chatbot-widget" id="chatbotWidget">
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle-btn" id="chatToggleBtn">
+        <span class="chat-icon">💬</span>
+    </button>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow" style="display: none;">
+        <!-- Header -->
+        <div class="chat-window-header">
+            <div>
+                <span>🌱</span>
+                <h3>Soil AI Assistant</h3>
+            </div>
+            <button class="close-chat-btn">✕</button>
+        </div>
+
+        <!-- Messages -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <p>👋 Hello! I'm your AI soil expert. Ask me anything about soil types, crops, or farming!</p>
+            </div>
+        </div>
+
+        <!-- Quick Suggestions -->
+        <div class="quick-suggestions">
+            <button class="suggestion-btn">What soil type do I have?</button>
+            <button class="suggestion-btn">Best crops for clay soil</button>
+            <button class="suggestion-btn">How to improve soil pH?</button>
+            <button class="suggestion-btn">Organic fertilizer tips</button>
+        </div>
+
+        <!-- Input -->
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Type your message..." />
+            <button id="sendBtn">➤</button>
+        </div>
+    </div>
+</div>
+<!-- ============ END CHATBOT ============ -->
